@@ -1,40 +1,18 @@
-//MODO JAVASCRIPT 
-//const element = document.createElement('h1')
-//element.innerText = 'Hola React..'
-//const container = document.getElementById('root')
-//container.appendChild(element)
 
-//MODO REACTJS
+// https://cdn4.iconfinder.com/data/icons/avatars-xmas-giveaway/128/batman_hero_avatar_comics-256.png
+//https://firebasestorage.googleapis.com/v0/b/tutoriales-e4830.appspot.com/o/exercise.png?alt=media&token=b9c4b236-16a9-4a56-bba2-90c9660a0f06/
+//importamos las librerias
 import React from 'react'
 import ReactDOM from 'react-dom'
+import Card from './components/Card'
+import 'bootstrap/dist/css/bootstrap.css'
 
-// COMPONENTES JSX
-const user = {
-    firstName: 'Carlos',
-    lastName: 'Palanca',
-    avatar: 'https://cdn4.iconfinder.com/data/icons/superheroes/512/ironman-512.png'   
-}
-
-function getName(user){
-    return `${user.firstName} ${user.lastName}`
-}
-
-function getGreeting(user){
-    if(user){
-        return <h1>Hola {getName(user)}</h1>
-    }
-    return <h1>Hola Estraño</h1>
-}
-
-const name = 'Carlos'
-
-const element = (
-    <div>
-        <h1>{getGreeting(user)}</h1>
-        <img src={user.avatar} />
-    </div>
-)
 const container = document.getElementById('root')
-
 //ReactDOM.render(__QUE__, __DONDE__)
-ReactDOM.render(element, container)
+ReactDOM.render(<Card 
+                    title="Mi TITULO"
+                    description="Learn amazing streeet workout and calisthenics"
+                    img="https://firebasestorage.googleapis.com/v0/b/tutoriales-e4830.appspot.com/o/exercise.png?alt=media&token=b9c4b236-16a9-4a56-bba2-90c9660a0f06"
+                    leftColor="#A74CF2"
+                    rightColor="#617BFB"
+                />, container)
