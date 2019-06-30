@@ -2,12 +2,74 @@ import React from 'react'
 import Welcome from '../components/Welcome'
 import ExerciseList from '../components/ExerciseList'
 import AddButtom from '../components/AddButton'
+import Loading from '../components/Loading'
+import FatalError from './500'
 
 class Exercises extends React.Component{
-    constructor(props){
-        super(props)
-        this.state = {
-            data: [{
+    state = {
+            data: [],
+            loading: true,
+            error: null
+        }
+    
+    async componentDidMount(){
+        await this.fetchExercises()
+    }
+    
+    fetchExercises = async () => {
+        try{
+            let res = await fetch('http://localhost:8000/api/exercises')
+            let data = await res.json()
+            
+            this.setState({
+                data,
+                loading: false
+            })
+
+        } catch (error){
+            this.setState({
+                loading: false,
+                error
+            })
+        }
+    }
+
+    render(){
+        if(this.state.loading)
+            return <Loading />
+            
+        if(this.state.error)
+            return <FatalError />
+
+        return(
+            <div>
+                <Welcome
+                    username="Carlos"
+                />
+                <ExerciseList 
+                    exercises ={this.state.data}
+                />
+                <AddButtom />
+            </div>
+        ) 
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+//class Exercises extends React.Component{
+//    constructor(props){
+//        super(props)
+//        this.state = {
+/*            data: [{
                 "id": 1,
                 "title": "Technique Guides",
                 "description": "Learn amazing street workout and calisthenics",
@@ -29,21 +91,21 @@ class Exercises extends React.Component{
                 "leftColor": "#FAD961",
                 "rightColor": "#F76B1C"
             }]  
-        }
-    }
-    render(){
-        return(
-            <div>
-                <Welcome
-                    username="Carlos"
-                />
-                <ExerciseList 
-                    exercises ={this.state.data}
-                />
-                <AddButtom />
-            </div>
-        ) 
-    }
-}
-
+//        }
+//    }
+//    render(){
+//        return(
+//            <div>
+//                <Welcome
+//                    username="Carlos"
+//                />
+//                <ExerciseList 
+//                    exercises ={this.state.data}
+//                />
+//                <AddButtom />
+//            </div>
+//        ) 
+//    }
+//}
+*/
 export default Exercises
