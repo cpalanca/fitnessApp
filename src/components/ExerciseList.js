@@ -1,23 +1,23 @@
 import React from 'react'
-import Card from '../components/Card'
-
+import Card from './Card'
 
 const ExerciseList = ({exercises}) => (
-    <div>
-        { exercises.map((exercise) => {
-            return(
-                <Card 
-                    key={exercise.id}
-                    title={exercise.title}
-                    description={exercise.description}
-                    img={exercise.img}
-                    leftColor={exercise.leftColor}
-                    rightColor={exercise.rightColor}
-                />
-            )
-        })}
-    </div>
+    <React.Fragment>
+        { exercises.map((exercise) => (
+            <Card 
+                key={exercise.id}
+                title={exercise.title}
+                description={exercise.description}
+                img={exercise.img}
+                leftColor={exercise.leftColor}
+                rightColor={exercise.rightColor}
+            />
+        ))}
+    </React.Fragment>    
 )
+
+
+export default ExerciseList
 
 
 
@@ -38,5 +38,3 @@ const ExerciseList = ({exercises}) => (
 //        </div>
 //    )
 //}
-
-export default ExerciseList
